@@ -1,8 +1,12 @@
-package br.com.alura.helloapp.ui.details
+package br.com.alura.helloapp.room.entities
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import java.util.*
 
-data class DetalhesContatoUiState(
+@Entity
+data class Contato(
+    @PrimaryKey(autoGenerate = true)
     val id: Long = 0L,
     val nome: String = "",
     val sobrenome: String = "",

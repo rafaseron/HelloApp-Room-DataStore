@@ -1,4 +1,4 @@
-package br.com.alura.helloapp.ui.form
+package br.com.alura.helloapp.ui.uiState
 
 import androidx.annotation.StringRes
 import br.com.alura.helloapp.R

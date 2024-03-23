@@ -1,8 +1,9 @@
-package br.com.alura.helloapp.ui.details
+package br.com.alura.helloapp.ui.viewmodels
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import br.com.alura.helloapp.ui.uiState.DetalhesContatoUiState
 import br.com.alura.helloapp.util.ID_CONTATO
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

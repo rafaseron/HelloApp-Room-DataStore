@@ -1,4 +1,4 @@
-package br.com.alura.helloapp.ui.home
+package br.com.alura.helloapp.ui.screens
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -19,9 +19,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.alura.helloapp.R
-import br.com.alura.helloapp.data.Contato
+import br.com.alura.helloapp.room.entities.Contato
 import br.com.alura.helloapp.sampleData.contatosExemplo
 import br.com.alura.helloapp.ui.components.AsyncImagePerfil
+import br.com.alura.helloapp.ui.uiState.ListaContatosUiState
 import br.com.alura.helloapp.ui.theme.HelloAppTheme
 
 @Composable

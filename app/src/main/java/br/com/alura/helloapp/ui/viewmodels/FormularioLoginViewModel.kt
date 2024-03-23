@@ -1,6 +1,7 @@
-package br.com.alura.helloapp.ui.login
+package br.com.alura.helloapp.ui.viewmodels
 
 import androidx.lifecycle.ViewModel
+import br.com.alura.helloapp.ui.uiState.FormularioLoginUiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

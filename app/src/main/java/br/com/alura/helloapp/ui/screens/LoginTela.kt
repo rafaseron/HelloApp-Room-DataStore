@@ -1,4 +1,4 @@
-package br.com.alura.helloapp.ui.login
+package br.com.alura.helloapp.ui.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -25,6 +25,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.alura.helloapp.R
 import br.com.alura.helloapp.ui.theme.HelloAppTheme
+import br.com.alura.helloapp.ui.uiState.LoginUiState
 
 @Composable
 fun LoginTela(

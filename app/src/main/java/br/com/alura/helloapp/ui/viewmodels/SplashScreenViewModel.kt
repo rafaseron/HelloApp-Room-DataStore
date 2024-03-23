@@ -1,7 +1,8 @@
-package br.com.alura.helloapp.ui.splashscreen
+package br.com.alura.helloapp.ui.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import br.com.alura.helloapp.ui.uiState.SplashScreenUiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

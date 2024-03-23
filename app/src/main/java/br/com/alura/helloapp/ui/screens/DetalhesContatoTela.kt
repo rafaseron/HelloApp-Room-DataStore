@@ -1,4 +1,4 @@
-package br.com.alura.helloapp.ui.details
+package br.com.alura.helloapp.ui.screens
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
@@ -15,6 +15,7 @@ import androidx.compose.ui.unit.dp
 import br.com.alura.helloapp.R
 import br.com.alura.helloapp.extensions.converteParaString
 import br.com.alura.helloapp.ui.components.AsyncImagePerfil
+import br.com.alura.helloapp.ui.uiState.DetalhesContatoUiState
 import br.com.alura.helloapp.ui.theme.HelloAppTheme
 
 @Composable

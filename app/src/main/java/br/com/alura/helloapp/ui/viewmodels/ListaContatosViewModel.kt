@@ -1,6 +1,7 @@
-package br.com.alura.helloapp.ui.home
+package br.com.alura.helloapp.ui.viewmodels
 
 import androidx.lifecycle.ViewModel
+import br.com.alura.helloapp.ui.uiState.ListaContatosUiState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

@@ -7,11 +7,8 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import br.com.alura.helloapp.DestinosHelloApp
-import br.com.alura.helloapp.ui.home.ListaContatosTela
-import br.com.alura.helloapp.ui.home.ListaContatosViewModel
-import br.com.alura.helloapp.ui.navegaParaDetalhes
-import br.com.alura.helloapp.ui.navegaParaFormularioContato
+import br.com.alura.helloapp.ui.screens.ListaContatosTela
+import br.com.alura.helloapp.ui.viewmodels.ListaContatosViewModel
 
 fun NavGraphBuilder.homeGraph(
     navController: NavHostController

@@ -8,12 +8,10 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import br.com.alura.helloapp.DestinosHelloApp
-import br.com.alura.helloapp.ui.login.FormularioLoginTela
-import br.com.alura.helloapp.ui.login.FormularioLoginViewModel
-import br.com.alura.helloapp.ui.login.LoginTela
-import br.com.alura.helloapp.ui.login.LoginViewModel
-import br.com.alura.helloapp.ui.navegaLimpo
+import br.com.alura.helloapp.ui.screens.FormularioLoginTela
+import br.com.alura.helloapp.ui.viewmodels.FormularioLoginViewModel
+import br.com.alura.helloapp.ui.screens.LoginTela
+import br.com.alura.helloapp.ui.viewmodels.LoginViewModel
 
 fun NavGraphBuilder.loginGraph(
     navController: NavHostController

@@ -1,4 +1,4 @@
-package br.com.alura.helloapp.ui.splashscreen
+package br.com.alura.helloapp.ui.uiState
 
 data class SplashScreenUiState(
     val appState: AppState = AppState.Carregando

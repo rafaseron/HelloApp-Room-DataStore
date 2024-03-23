@@ -1,4 +1,4 @@
-package br.com.alura.helloapp.ui.form
+package br.com.alura.helloapp.ui.screens
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.dp
 import br.com.alura.helloapp.R
 import br.com.alura.helloapp.ui.components.CaixaDialogoImagem
 import br.com.alura.helloapp.ui.components.caixaDialogoData
+import br.com.alura.helloapp.ui.uiState.FormularioContatoUiState
 import br.com.alura.helloapp.ui.theme.HelloAppTheme
 import coil.compose.AsyncImage
 import coil.request.ImageRequest

@@ -1,14 +1,10 @@
-package br.com.alura.helloapp.ui
+package br.com.alura.helloapp.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import br.com.alura.helloapp.DestinosHelloApp
-import br.com.alura.helloapp.DetalhesContato
-import br.com.alura.helloapp.FormularioContato
-import br.com.alura.helloapp.navigation.*
 
 @Composable
 fun HelloAppNavHost(

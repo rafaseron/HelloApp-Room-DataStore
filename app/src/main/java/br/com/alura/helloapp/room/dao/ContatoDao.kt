@@ -1,9 +1,9 @@
-package br.com.alura.helloapp.database
+package br.com.alura.helloapp.room.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import br.com.alura.helloapp.data.Contato
+import br.com.alura.helloapp.room.entities.Contato
 
 @Dao
 interface ContatoDao {

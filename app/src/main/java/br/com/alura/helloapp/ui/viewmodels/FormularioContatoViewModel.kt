@@ -1,9 +1,10 @@
-package br.com.alura.helloapp.ui.form
+package br.com.alura.helloapp.ui.viewmodels
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import br.com.alura.helloapp.extensions.converteParaDate
 import br.com.alura.helloapp.extensions.converteParaString
+import br.com.alura.helloapp.ui.uiState.FormularioContatoUiState
 import br.com.alura.helloapp.util.ID_CONTATO
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

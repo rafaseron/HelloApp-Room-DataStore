@@ -1,4 +1,4 @@
-package br.com.alura.helloapp.ui.login
+package br.com.alura.helloapp.ui.uiState
 
 data class LoginUiState(
     val usuario: String = "",
