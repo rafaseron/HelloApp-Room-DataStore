@@ -27,7 +27,7 @@ abstract class HelloAppDatabase : RoomDatabase() {
                     context,
                     HelloAppDatabase::class.java,
                     "helloApp.db"
-                ).build()
+                ).allowMainThreadQueries().build()
                 return INSTANCE
             }
         }
