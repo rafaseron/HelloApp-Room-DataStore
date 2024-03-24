@@ -6,16 +6,30 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import br.com.alura.helloapp.room.dao.ContatoDao
 import br.com.alura.helloapp.room.entities.Contato
+import kotlinx.coroutines.internal.synchronized
 
 @Database(entities = [Contato::class], version = 1)
 abstract class HelloAppDatabase : RoomDatabase() {
     abstract fun contatoDao(): ContatoDao
 
-    fun getDatabase(context: Context): HelloAppDatabase {
-        return Room.databaseBuilder(
-            context,
-            HelloAppDatabase::class.java,
-            "helloApp.db"
-        ).build()
+    // Uma @Database precisa ser uma classe absrata em Kotlin
+    // Para criar instancias de algo abstrato, voce tem que colocar o que voce quer instanciar dentro do
+    // escopo de companion object { }. Dessa forma, por exemplo, getDataBase fica acessivel
+    companion object {
+
+        private lateinit var INSTANCE: HelloAppDatabase
+        fun getDatabase(context: Context): HelloAppDatabase {
+            // verifica se o banco de dados esta inicializado. Se estiver, retorna. Se não, inicializa e retorna (Singleton)
+            if (::INSTANCE.isInitialized) {
+                return INSTANCE
+            } else {
+                INSTANCE = Room.databaseBuilder(
+                    context,
+                    HelloAppDatabase::class.java,
+                    "helloApp.db"
+                ).build()
+                return INSTANCE
+            }
+        }
     }
 }
