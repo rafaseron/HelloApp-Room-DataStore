@@ -31,7 +31,6 @@ fun NavGraphBuilder.formularioContatoGraph(
             val viewModel = hiltViewModel<FormularioContatoViewModel>()
             val state by viewModel.uiState.collectAsState()
             val context = LocalContext.current
-            val contatoRepository = ContatoRepository(context)
 
             LaunchedEffect(state.aniversario) {
                 viewModel.defineTextoAniversario(
@@ -45,7 +44,7 @@ fun NavGraphBuilder.formularioContatoGraph(
                 state = state,
                 onClickSalvar = {
                     scope.launch {
-                        contatoRepository.insertOnDatabase(Contato(nome = state.nome, sobrenome = state.sobrenome, telefone = state.telefone, fotoPerfil = state.fotoPerfil, aniversario = state.aniversario))
+                        viewModel.onSaveClick()
                     }
                     navController.popBackStack()
                 },
