@@ -17,7 +17,7 @@ class ContatoRepository (context: Context) {
     O Repository então usa o Dao para realizar operações no Banco de Dados
      */
 
-    fun insertOnDatabase(contato: Contato): Boolean{
+    suspend fun insertOnDatabase(contato: Contato): Boolean{
         return contatoDataBase.insert(contato) > 0
     }
 
@@ -25,7 +25,7 @@ class ContatoRepository (context: Context) {
         return contatoDataBase.update(contato) > 0
     }
 
-    fun deleteOnDatabase(id: Long){
+    suspend fun deleteOnDatabase(id: Long){
         val contatoFiltrado = searchContactFromId(id)
         contatoDataBase.delete(contatoFiltrado)
     }

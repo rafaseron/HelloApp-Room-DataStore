@@ -12,13 +12,13 @@ import java.util.Date
 interface ContatoDao {
 
     @Insert
-    fun insert(contato: Contato): Long  //podemos retornar em Long quantos dados foram inseridos
+    suspend fun insert(contato: Contato): Long  //podemos retornar em Long quantos dados foram inseridos
 
     @Update
     fun update(contato: Contato): Int //podemos retornar em Int quantos dados foram atualizados
 
     @Delete
-    fun delete(contato: Contato)
+    suspend fun delete(contato: Contato)
 
     //Query são CONSULTAS no Banco de Dados usando SQL
     @Query("SELECT * FROM Contato") //tambem podemos adicionar WHERE e AND se necessario
