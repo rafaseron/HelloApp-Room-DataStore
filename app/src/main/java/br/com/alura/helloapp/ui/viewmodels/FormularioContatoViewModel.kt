@@ -4,19 +4,22 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import br.com.alura.helloapp.extensions.converteParaDate
 import br.com.alura.helloapp.extensions.converteParaString
+import br.com.alura.helloapp.room.entities.Contato
+import br.com.alura.helloapp.room.repository.ContatoRepository
 import br.com.alura.helloapp.ui.uiState.FormularioContatoUiState
 import br.com.alura.helloapp.util.ID_CONTATO
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import javax.inject.Inject
 
 
-class FormularioContatoViewModel(
-    savedStateHandle: SavedStateHandle
-) : ViewModel() {
+@HiltViewModel
+class FormularioContatoViewModel @Inject constructor(private val contatoRepository: ContatoRepository, savedStateHandle: SavedStateHandle) : ViewModel() {
 
-    private val idContato = savedStateHandle.get<Long>(ID_CONTATO)
+    //private val idContato = savedStateHandle.get<Long>(ID_CONTATO)
 
     private val _uiState = MutableStateFlow(FormularioContatoUiState())
     val uiState: StateFlow<FormularioContatoUiState>
@@ -70,5 +73,13 @@ class FormularioContatoViewModel(
         _uiState.value = _uiState.value.copy(
             fotoPerfil = url, mostrarCaixaDialogoImagem = false
         )
+    }
+
+    suspend fun onSaveClick(){
+        val contato = Contato(nome = uiState.value.nome, sobrenome = uiState.value.sobrenome, fotoPerfil = uiState.value.fotoPerfil,
+            telefone = uiState.value.telefone, aniversario = uiState.value.aniversario)
+        contatoRepository.insertOnDatabase(contato)
+
+        ListaContatosViewModel(contatoRepository).updateContactList()
     }
 }
