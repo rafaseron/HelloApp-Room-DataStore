@@ -25,7 +25,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import br.com.alura.helloapp.R
 import br.com.alura.helloapp.ui.theme.HelloAppTheme
-import br.com.alura.helloapp.ui.uiState.LoginUiState
+import br.com.alura.helloapp.ui.viewmodels.LoginUiState
 
 @Composable
 fun LoginTela(

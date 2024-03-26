@@ -22,7 +22,7 @@ import br.com.alura.helloapp.R
 import br.com.alura.helloapp.room.entities.Contato
 import br.com.alura.helloapp.sampleData.contatosExemplo
 import br.com.alura.helloapp.ui.components.AsyncImagePerfil
-import br.com.alura.helloapp.ui.uiState.ListaContatosUiState
+import br.com.alura.helloapp.ui.viewmodels.ListaContatosUiState
 import br.com.alura.helloapp.ui.theme.HelloAppTheme
 
 @Composable
