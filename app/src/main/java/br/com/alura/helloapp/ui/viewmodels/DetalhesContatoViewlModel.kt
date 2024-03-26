@@ -3,31 +3,36 @@ package br.com.alura.helloapp.ui.viewmodels
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import br.com.alura.helloapp.room.entities.Contato
+import br.com.alura.helloapp.room.repository.ContatoRepository
 import br.com.alura.helloapp.ui.uiState.DetalhesContatoUiState
-import br.com.alura.helloapp.util.ID_CONTATO
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 
-class DetalhesContatoViewlModel(
-    savedStateHandle: SavedStateHandle
-) : ViewModel() {
+@HiltViewModel
+class DetalhesContatoViewlModel @Inject constructor (private val contatoRepository: ContatoRepository, savedStateHandle: SavedStateHandle) : ViewModel() {
 
-    private val idContato = savedStateHandle.get<Long>(ID_CONTATO)
+    //private val idContato = savedStateHandle.get<Long>(ID_CONTATO)
 
     private val _uiState = MutableStateFlow(DetalhesContatoUiState())
-    val uiState: StateFlow<DetalhesContatoUiState>
-        get() = _uiState.asStateFlow()
-
-    init {
-        viewModelScope.launch {
-            carregaContato()
-        }
+    val uiState = _uiState.asStateFlow()
+    private fun atualizarContatoDoUiState(contato: Contato) {
+        _uiState.value = _uiState.value.copy(nome = contato.nome, sobrenome = contato.sobrenome,
+            telefone = contato.telefone, fotoPerfil = contato.fotoPerfil, aniversario = contato.aniversario)
     }
 
-    private suspend fun carregaContato() {
+    fun receberIdPeloNavigation(id: Long){
+        _uiState.value = _uiState.value.copy(id = id)
+
+        val contatoFiltrado = contatoRepository.searchContactFromId(id)
+        contatoFiltrado?.let {
+            atualizarContatoDoUiState(it)
+        }
+
     }
 
     suspend fun removeContato() {

@@ -28,6 +28,7 @@ fun NavGraphBuilder.detalhesContatoGraph(
 
             val viewModel = hiltViewModel<DetalhesContatoViewlModel>()
             val state by viewModel.uiState.collectAsState()
+            viewModel.receberIdPeloNavigation(idContato)
 
             val scope = rememberCoroutineScope()
             val context = LocalContext.current
