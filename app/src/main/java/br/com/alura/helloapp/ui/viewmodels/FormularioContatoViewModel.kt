@@ -1,20 +1,41 @@
 package br.com.alura.helloapp.ui.viewmodels
 
+import androidx.annotation.StringRes
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import br.com.alura.helloapp.R
 import br.com.alura.helloapp.extensions.converteParaDate
 import br.com.alura.helloapp.extensions.converteParaString
 import br.com.alura.helloapp.room.entities.Contato
 import br.com.alura.helloapp.room.repository.ContatoRepository
-import br.com.alura.helloapp.ui.uiState.FormularioContatoUiState
-import br.com.alura.helloapp.util.ID_CONTATO
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import java.util.Date
 import javax.inject.Inject
 
+
+data class FormularioContatoUiState(
+    val id: Long = 0L,
+    val nome: String = "",
+    val sobrenome: String = "",
+    val telefone: String = "",
+    val fotoPerfil: String = "",
+    val aniversario: Date? = null,
+    val mostrarCaixaDialogoImagem: Boolean = false,
+    val mostrarCaixaDialogoData: Boolean = false,
+    val onNomeMudou: (String) -> Unit = {},
+    val onSobrenomeMudou: (String) -> Unit = {},
+    val onTelefoneMudou: (String) -> Unit = {},
+    val onFotoPerfilMudou: (String) -> Unit = {},
+    val onAniversarioMudou: (String) -> Unit = {},
+    val onMostrarCaixaDialogoImagem: (mostrar: Boolean) -> Unit = {},
+    val onMostrarCaixaDialogoData: (mostrar: Boolean) -> Unit = {},
+    val textoAniversairo: String = "",
+    @StringRes val tituloAppbar: Int? = R.string.titulo_cadastro_contato,
+)
 
 @HiltViewModel
 class FormularioContatoViewModel @Inject constructor(private val contatoRepository: ContatoRepository, savedStateHandle: SavedStateHandle) : ViewModel() {

@@ -2,13 +2,18 @@ package br.com.alura.helloapp.ui.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import br.com.alura.helloapp.room.entities.Contato
 import br.com.alura.helloapp.room.repository.ContatoRepository
-import br.com.alura.helloapp.ui.uiState.ListaContatosUiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+
+data class ListaContatosUiState(
+    val contatos: List<Contato> = emptyList(),
+    val logado: Boolean = true
+)
 
 @HiltViewModel
 class ListaContatosViewModel @Inject constructor(private val contatoRepository: ContatoRepository) : ViewModel() {
