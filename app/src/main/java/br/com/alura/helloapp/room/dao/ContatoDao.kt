@@ -29,6 +29,6 @@ interface ContatoDao {
     fun getAniversariantes(dataDeHoje: Date): List<Contato>
 
     @Query("SELECT * FROM Contato WHERE id = :idToSearch")
-    fun getContactFromId(idToSearch: Long): Contato
+    fun getContactFromId(idToSearch: Long): Contato?
 
 }
