@@ -12,15 +12,12 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
-import br.com.alura.helloapp.ui.uiState.AppState
+import br.com.alura.helloapp.ui.viewmodels.AppState
 import br.com.alura.helloapp.ui.viewmodels.SplashScreenViewModel
 
-fun NavGraphBuilder.splashGraph(
-    navController: NavHostController
-) {
-    composable(
-        route = DestinosHelloApp.SplashScreen.rota
-    ) {
+fun NavGraphBuilder.splashScreenNavigation(navController: NavHostController) {
+    composable(route = DestinosHelloApp.SplashScreen.rota) {
+
         val viewModel = hiltViewModel<SplashScreenViewModel>()
         val state by viewModel.uiState.collectAsState()
 

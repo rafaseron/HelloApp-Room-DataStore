@@ -7,18 +7,11 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 
 @Composable
-fun HelloAppNavHost(
-    navController: NavHostController,
-    modifier: Modifier = Modifier
-) {
-    NavHost(
-        navController = navController,
-        startDestination = DestinosHelloApp.HomeGraph.rota,
-        modifier = modifier
-    ) {
-        homeGraph(navController)
-        formularioContatoGraph(navController)
-        detalhesContatoGraph(navController)
+fun NavHostComposable(navController: NavHostController, modifier: Modifier = Modifier) {
+    NavHost(navController = navController, startDestination = DestinosHelloApp.HomeGraph.rota, modifier = modifier) {
+        listContactsScreenNavigation(navController)
+        formularioContatoScreenNavigation(navController)
+        detalhesContatoScreenNavigation(navController)
     }
 }
 

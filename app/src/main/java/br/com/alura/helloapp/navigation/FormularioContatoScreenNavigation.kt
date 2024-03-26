@@ -10,20 +10,14 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import br.com.alura.helloapp.R
-import br.com.alura.helloapp.room.entities.Contato
-import br.com.alura.helloapp.room.repository.ContatoRepository
 import br.com.alura.helloapp.ui.screens.FormularioContatoTela
 import br.com.alura.helloapp.ui.viewmodels.FormularioContatoViewModel
 import br.com.alura.helloapp.util.ID_CONTATO
 import kotlinx.coroutines.launch
 
-fun NavGraphBuilder.formularioContatoGraph(
-    navController: NavHostController
-) {
-    composable(
-        route = FormularioContato.rotaComArgumentos,
-        arguments = FormularioContato.argumentos
-    ) { navBackStackEntry ->
+fun NavGraphBuilder.formularioContatoScreenNavigation(navController: NavHostController) {
+    composable(route = FormularioContato.rotaComArgumentos, arguments = FormularioContato.argumentos) {
+        navBackStackEntry ->
         navBackStackEntry.arguments?.getLong(
             ID_CONTATO
         )?.let { idContato ->
@@ -40,9 +34,7 @@ fun NavGraphBuilder.formularioContatoGraph(
 
             val scope = rememberCoroutineScope()
 
-            FormularioContatoTela(
-                state = state,
-                onClickSalvar = {
+            FormularioContatoTela(state = state, onClickSalvar = {
                     scope.launch {
                         viewModel.onSaveClick()
                     }

@@ -10,13 +10,9 @@ import androidx.navigation.navigation
 import br.com.alura.helloapp.ui.screens.ListaContatosTela
 import br.com.alura.helloapp.ui.viewmodels.ListaContatosViewModel
 
-fun NavGraphBuilder.homeGraph(
-    navController: NavHostController
-) {
-    navigation(
-        startDestination = DestinosHelloApp.ListaContatos.rota,
-        route = DestinosHelloApp.HomeGraph.rota,
-    ) {
+fun NavGraphBuilder.listContactsScreenNavigation(navController: NavHostController) {
+    navigation(startDestination = DestinosHelloApp.ListaContatos.rota, route = DestinosHelloApp.HomeGraph.rota,) {
+
         composable(route = DestinosHelloApp.ListaContatos.rota) {
             val viewModel = hiltViewModel<ListaContatosViewModel>()
             val state by viewModel.uiState.collectAsState()

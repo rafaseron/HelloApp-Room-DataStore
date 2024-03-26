@@ -13,16 +13,11 @@ import br.com.alura.helloapp.ui.viewmodels.FormularioLoginViewModel
 import br.com.alura.helloapp.ui.screens.LoginTela
 import br.com.alura.helloapp.ui.viewmodels.LoginViewModel
 
-fun NavGraphBuilder.loginGraph(
-    navController: NavHostController
-) {
-    navigation(
-        startDestination = DestinosHelloApp.Login.rota,
-        route = DestinosHelloApp.LoginGraph.rota
-    ) {
-        composable(
-            route = DestinosHelloApp.Login.rota,
-        ) {
+fun NavGraphBuilder.loginNavigation(navController: NavHostController) {
+    navigation(startDestination = DestinosHelloApp.Login.rota, route = DestinosHelloApp.LoginGraph.rota) {
+
+        composable(route = DestinosHelloApp.Login.rota) {
+
             val viewModel = hiltViewModel<LoginViewModel>()
             val state by viewModel.uiState.collectAsState()
 
@@ -43,14 +38,12 @@ fun NavGraphBuilder.loginGraph(
             )
         }
 
-        composable(
-            route = DestinosHelloApp.FormularioLogin.rota,
-        ) {
+        composable(route = DestinosHelloApp.FormularioLogin.rota) {
+
             val viewModel = hiltViewModel<FormularioLoginViewModel>()
             val state by viewModel.uiState.collectAsState()
 
-            FormularioLoginTela(
-                state = state,
+            FormularioLoginTela(state = state,
                 onSalvar = {
                     navController.navegaLimpo(DestinosHelloApp.Login.rota)
                 }

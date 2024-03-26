@@ -15,13 +15,9 @@ import br.com.alura.helloapp.ui.viewmodels.DetalhesContatoViewlModel
 import br.com.alura.helloapp.util.ID_CONTATO
 import kotlinx.coroutines.launch
 
-fun NavGraphBuilder.detalhesContatoGraph(
-    navController: NavHostController
-) {
-    composable(
-        route = DetalhesContato.rotaComArgumentos,
-        arguments = DetalhesContato.argumentos
-    ) { navBackStackEntry ->
+fun NavGraphBuilder.detalhesContatoScreenNavigation(navController: NavHostController) {
+    composable(route = DetalhesContato.rotaComArgumentos, arguments = DetalhesContato.argumentos) {
+        navBackStackEntry ->
         navBackStackEntry.arguments?.getLong(
             ID_CONTATO
         )?.let { idContato ->
