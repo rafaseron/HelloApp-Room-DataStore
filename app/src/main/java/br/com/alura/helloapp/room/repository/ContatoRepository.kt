@@ -27,14 +27,16 @@ class ContatoRepository (context: Context) {
 
     suspend fun deleteOnDatabase(id: Long){
         val contatoFiltrado = searchContactFromId(id)
-        contatoDataBase.delete(contatoFiltrado)
+        contatoFiltrado?.let {
+            contatoDataBase.delete(contatoFiltrado)
+        }
     }
 
     fun getAllContacts(): List<Contato>{
         return contatoDataBase.getAll()
     }
 
-    fun searchContactFromId(id: Long): Contato{
+    fun searchContactFromId(id: Long): Contato?{
         return contatoDataBase.getContactFromId(id)
     }
 
