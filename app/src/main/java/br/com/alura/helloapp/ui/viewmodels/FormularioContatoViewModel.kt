@@ -105,14 +105,20 @@ class FormularioContatoViewModel @Inject constructor(private val contatoReposito
     }
 
     suspend fun onSaveClick(){
+        val verificarSeIdExiste = contatoRepository.searchContactFromId(uiState.value.id)
 
+        if (verificarSeIdExiste != null){
+            val updateContact = Contato(id = uiState.value.id, nome = uiState.value.nome, sobrenome = uiState.value.sobrenome, fotoPerfil = uiState.value.fotoPerfil,
+                telefone = uiState.value.telefone, aniversario = uiState.value.aniversario)
+            contatoRepository.updateOnDatabasse(updateContact)
+            //listaContatosViewModel.updateContactList()
+        }else{
+            val contato = Contato(nome = uiState.value.nome, sobrenome = uiState.value.sobrenome, fotoPerfil = uiState.value.fotoPerfil,
+                telefone = uiState.value.telefone, aniversario = uiState.value.aniversario)
+            contatoRepository.insertOnDatabase(contato)
 
-
-        val contato = Contato(nome = uiState.value.nome, sobrenome = uiState.value.sobrenome, fotoPerfil = uiState.value.fotoPerfil,
-            telefone = uiState.value.telefone, aniversario = uiState.value.aniversario)
-        contatoRepository.insertOnDatabase(contato)
-
-        ListaContatosViewModel(contatoRepository).updateContactList()
+            //listaContatosViewModel.updateContactList()
+        }
     }
 
     fun receberIdPeloNavigation(id: Long){
