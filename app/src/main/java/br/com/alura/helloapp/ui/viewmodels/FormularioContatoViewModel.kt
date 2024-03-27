@@ -14,6 +14,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import java.util.Date
@@ -130,9 +131,10 @@ class FormularioContatoViewModel @Inject constructor(private val contatoReposito
         val receivedId = uiState.value.id
         viewModelScope.launch {
             val contatoFiltrado = contatoRepository.searchContactFromId(receivedId)
-            contatoFiltrado?.let {
+            val contatoSemFlow = contatoFiltrado.first()
+            contatoSemFlow?.let {
                 _uiState.value = _uiState.value.copy(tituloAppbar = R.string.titulo_editar_contato)
-                showContactFromReceivedId(contatoFiltrado)
+                showContactFromReceivedId(it)
             }
         }
     }
