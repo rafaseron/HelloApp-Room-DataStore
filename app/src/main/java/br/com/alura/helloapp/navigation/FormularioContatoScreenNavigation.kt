@@ -26,7 +26,12 @@ fun NavGraphBuilder.formularioContatoScreenNavigation(navController: NavHostCont
             val state by viewModel.uiState.collectAsState()
             val context = LocalContext.current
 
-            //viewModel.receberIdPeloNavigation(idContato)
+            //esse LaunchedEffect(Unit){ } é muito importante:
+            //faz com que a mudanca do onValueChange do OutlinedTextField do Composable (que desencadeia recomposicao)
+            //nao execute de novo essa linha de preencher o Contato inteiro do uiState usando os dados do Banco de Dados
+            LaunchedEffect(Unit) {
+                viewModel.receberIdPeloNavigation(idContato)
+            }
 
             LaunchedEffect(state.aniversario) {
                 viewModel.defineTextoAniversario(

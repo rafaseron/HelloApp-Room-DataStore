@@ -43,7 +43,7 @@ data class FormularioContatoUiState(
 @HiltViewModel
 class FormularioContatoViewModel @Inject constructor(private val contatoRepository: ContatoRepository, savedStateHandle: SavedStateHandle) : ViewModel() {
 
-    private val idContato = savedStateHandle.get<Long>(ID_CONTATO)
+    //private val idContato = savedStateHandle.get<Long>(ID_CONTATO)
 
     private val _uiState = MutableStateFlow(FormularioContatoUiState())
     val uiState: StateFlow<FormularioContatoUiState>
@@ -51,9 +51,11 @@ class FormularioContatoViewModel @Inject constructor(private val contatoReposito
 
 
     init {
+        /* Caso for usar o SavedStateHandle, ative essa linha no init do viewModel
         idContato?.let {
             receberIdPeloNavigation(it)
         }
+         */
 
         _uiState.update { state ->
             state.copy(onNomeMudou = {
