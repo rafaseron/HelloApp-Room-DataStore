@@ -22,9 +22,14 @@ abstract class HelloAppDatabase : RoomDatabase() {
     //isso faz com que ela ganhe todas as funções que estao definidas no 'interface ContatoDao{ }'
     //lembrando que uma Interface pode ter metodos ou variaveis, mas nao pode ter variavies com valores já inicializados. Ela serve como um molde sem valores inicializados
 
-    // Uma @Database precisa ser uma classe absrata em Kotlin
-    // Para criar instancias de algo abstrato, voce tem que colocar o que voce quer instanciar dentro do
+    // Uma @Database precisa ser uma classe absrata em Kotlin -> o que significa que ela só pode ser herdada e nunca instanciada
+    // Porem queremos uma instancia do Banco de Dados Room (que tambem eh uma classe abstrata no seu codigo fonte).
+    // Como conseguir sua instancia sem instanciar a classe?
+
+    // Para criar instancias de algo abstrato, voce tem que colocar o que voce quer disponibilizar para ser instanciado dentro do
     // escopo de companion object { }. Dessa forma, por exemplo, getDataBase fica acessivel
+    // -> ou seja, quem acessa o conteudo do 'companion object' instancia apenas o conteudo dele, sem instanciar a classe (pois nao eh possivel, eh abstrata)
+    // tambem tem como disponibilizar por 'object nomeDoObjeto{ }'. companion object eh acessado direto sem o nome do objeto, e so pode ter um por classe.
 
     companion object {
         private lateinit var INSTANCE: HelloAppDatabase
