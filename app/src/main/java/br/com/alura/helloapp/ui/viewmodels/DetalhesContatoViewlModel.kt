@@ -2,11 +2,13 @@ package br.com.alura.helloapp.ui.viewmodels
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import br.com.alura.helloapp.room.entities.Contato
 import br.com.alura.helloapp.room.repository.ContatoRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.launch
 import java.util.Date
 import javax.inject.Inject
 
@@ -35,9 +37,11 @@ class DetalhesContatoViewlModel @Inject constructor (private val contatoReposito
     fun receberIdPeloNavigation(id: Long){
         _uiState.value = _uiState.value.copy(id = id)
 
-        val contatoFiltrado = contatoRepository.searchContactFromId(id)
-        contatoFiltrado?.let {
-            atualizarContatoDoUiState(it)
+        viewModelScope.launch {
+            val contatoFiltrado = contatoRepository.searchContactFromId(id)
+            contatoFiltrado?.let {
+                atualizarContatoDoUiState(it)
+            }
         }
 
     }
