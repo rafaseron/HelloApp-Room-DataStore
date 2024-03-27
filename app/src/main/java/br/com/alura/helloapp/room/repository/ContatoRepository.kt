@@ -21,7 +21,7 @@ class ContatoRepository (context: Context) {
         return contatoDataBase.insert(contato) > 0
     }
 
-    fun updateOnDatabasse(contato: Contato): Boolean{
+    suspend fun updateOnDatabasse(contato: Contato): Boolean{
         return contatoDataBase.update(contato) > 0
     }
 
@@ -32,15 +32,15 @@ class ContatoRepository (context: Context) {
         }
     }
 
-    fun getAllContacts(): List<Contato>{
+    suspend fun getAllContacts(): List<Contato>{
         return contatoDataBase.getAll()
     }
 
-    fun searchContactFromId(id: Long): Contato?{
+    suspend fun searchContactFromId(id: Long): Contato?{
         return contatoDataBase.getContactFromId(id)
     }
 
-    fun getAniversariantes(data: Date): List<Contato>{
+    suspend fun getAniversariantes(data: Date): List<Contato>{
         return contatoDataBase.getAniversariantes(data)
     }
 
