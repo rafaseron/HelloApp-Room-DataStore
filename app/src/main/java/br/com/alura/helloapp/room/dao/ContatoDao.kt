@@ -8,6 +8,7 @@ import androidx.room.Query
 import androidx.room.Update
 import br.com.alura.helloapp.room.entities.Contato
 import java.util.Date
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ContatoDao {
@@ -23,13 +24,13 @@ interface ContatoDao {
 
     //Query são CONSULTAS no Banco de Dados usando SQL
     @Query("SELECT * FROM Contato") //tambem podemos adicionar WHERE e AND se necessario
-    suspend fun getAll(): List<Contato>
+    suspend fun getAll(): Flow<List<Contato>>
     //WHERE ajudaria a pesquisar por um id especifico por exemplo. AND ajudaria a adicionar mais logica a consulta, se preciso
 
     @Query("SELECT * FROM Contato WHERE birthday = :dataDeHoje")
     suspend fun getAniversariantes(dataDeHoje: Date): List<Contato>
 
     @Query("SELECT * FROM Contato WHERE id = :idToSearch")
-    suspend fun getContactFromId(idToSearch: Long): Contato?
+    suspend fun getContactFromId(idToSearch: Long): Flow<Contato?>
 
 }
