@@ -1,5 +1,6 @@
 package br.com.alura.helloapp.navigation
 
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
@@ -24,7 +25,9 @@ fun NavGraphBuilder.detalhesContatoScreenNavigation(navController: NavHostContro
 
             val viewModel = hiltViewModel<DetalhesContatoViewlModel>()
             val state by viewModel.uiState.collectAsState()
-            viewModel.receberIdPeloNavigation(idContato)
+            LaunchedEffect(Unit) {
+                viewModel.receberIdPeloNavigation(idContato)
+            }
 
             val scope = rememberCoroutineScope()
             val context = LocalContext.current
