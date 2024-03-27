@@ -35,6 +35,7 @@ fun NavGraphBuilder.detalhesContatoScreenNavigation(navController: NavHostContro
                 onApagaContato = {
                     scope.launch {
                         context.mostraMensagem(context.getString(R.string.contato_apagado))
+                        viewModel.deleteContact()
                     }
                     navController.popBackStack()
                 },

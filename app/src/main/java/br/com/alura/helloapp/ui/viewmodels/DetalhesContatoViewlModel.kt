@@ -46,6 +46,12 @@ class DetalhesContatoViewlModel @Inject constructor (private val contatoReposito
 
     }
 
+    fun deleteContact(){
+        viewModelScope.launch {
+            contatoRepository.deleteOnDatabase(uiState.value.id)
+        }
+    }
+
     suspend fun removeContato() {
     }
 }
