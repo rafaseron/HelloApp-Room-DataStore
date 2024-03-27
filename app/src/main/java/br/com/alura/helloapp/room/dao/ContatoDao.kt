@@ -3,6 +3,7 @@ package br.com.alura.helloapp.room.dao
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy.REPLACE
 import androidx.room.Query
 import androidx.room.Update
 import br.com.alura.helloapp.room.entities.Contato
@@ -14,7 +15,7 @@ interface ContatoDao {
     @Insert
     suspend fun insert(contato: Contato): Long  //podemos retornar em Long quantos dados foram inseridos
 
-    @Update
+    @Update(onConflict = REPLACE)
     suspend fun update(contato: Contato): Int //podemos retornar em Int quantos dados foram atualizados
 
     @Delete
