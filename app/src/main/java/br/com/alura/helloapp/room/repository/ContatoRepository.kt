@@ -36,11 +36,11 @@ class ContatoRepository (context: Context) {
         }
     }
 
-    suspend fun getAllContacts(): Flow<List<Contato>> {
+    fun getAllContacts(): Flow<List<Contato>> {
         return contatoDataBase.getAll()
     }
 
-    suspend fun searchContactFromId(id: Long): Flow<Contato?>{
+    fun searchContactFromId(id: Long): Flow<Contato?>{
         return contatoDataBase.getContactFromId(id)
     }
 
