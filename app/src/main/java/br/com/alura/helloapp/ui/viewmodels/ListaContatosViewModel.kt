@@ -22,17 +22,17 @@ class ListaContatosViewModel @Inject constructor(private val contatoRepository: 
     private val _uiState = MutableStateFlow(ListaContatosUiState())
     val uiState = _uiState.asStateFlow()
 
+    init {
+        viewModelScope.launch {
+            updateContactList()
+        }
+    }
+
     fun updateContactList(){
         viewModelScope.launch {
             val listaDeContatos = contatoRepository.getAllContacts()
             val listaSemOFlow = listaDeContatos.first()
             _uiState.value = _uiState.value.copy(contatos = listaSemOFlow)
-        }
-    }
-
-    init {
-        viewModelScope.launch {
-            updateContactList()
         }
     }
 
