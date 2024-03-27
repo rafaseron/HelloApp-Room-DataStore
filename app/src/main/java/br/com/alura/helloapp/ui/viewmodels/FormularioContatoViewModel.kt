@@ -131,6 +131,7 @@ class FormularioContatoViewModel @Inject constructor(private val contatoReposito
         viewModelScope.launch {
             val contatoFiltrado = contatoRepository.searchContactFromId(receivedId)
             contatoFiltrado?.let {
+                _uiState.value = _uiState.value.copy(tituloAppbar = R.string.titulo_editar_contato)
                 showContactFromReceivedId(contatoFiltrado)
             }
         }
