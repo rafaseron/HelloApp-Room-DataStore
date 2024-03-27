@@ -16,6 +16,7 @@ fun NavGraphBuilder.listContactsScreenNavigation(navController: NavHostControlle
         composable(route = DestinosHelloApp.ListaContatos.rota) {
             val viewModel = hiltViewModel<ListaContatosViewModel>()
             val state by viewModel.uiState.collectAsState()
+            viewModel.updateContactList()
 
             ListaContatosTela(
                 state = state,
