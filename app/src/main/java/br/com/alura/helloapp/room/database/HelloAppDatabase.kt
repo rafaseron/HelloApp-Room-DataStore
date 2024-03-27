@@ -18,6 +18,9 @@ abstract class HelloAppDatabase : RoomDatabase() {
 
     //como a funcao Dao nao tem Corpo -> ela é uma funcao abstrata
     abstract fun contatoDao(): ContatoDao
+    //a funcao abstrata (funcao sem corpo) contatoDao esta herdando uma Interface, que é a ContatoDao
+    //isso faz com que ela ganhe todas as funções que estao definidas no 'interface ContatoDao{ }'
+    //lembrando que uma Interface pode ter metodos ou variaveis, mas nao pode ter variavies com valores já inicializados. Ela serve como um molde sem valores inicializados
 
     // Uma @Database precisa ser uma classe absrata em Kotlin
     // Para criar instancias de algo abstrato, voce tem que colocar o que voce quer instanciar dentro do
