@@ -107,8 +107,9 @@ class FormularioContatoViewModel @Inject constructor(private val contatoReposito
 
     suspend fun onSaveClick(){
         val verificarSeIdExiste = contatoRepository.searchContactFromId(uiState.value.id)
+        val tirarOFlow = verificarSeIdExiste.first()
 
-        if (verificarSeIdExiste != null){
+        if (tirarOFlow != null){
             val updateContact = Contato(id = uiState.value.id, nome = uiState.value.nome, sobrenome = uiState.value.sobrenome, fotoPerfil = uiState.value.fotoPerfil,
                 telefone = uiState.value.telefone, aniversario = uiState.value.aniversario)
             contatoRepository.updateOnDatabasse(updateContact)
