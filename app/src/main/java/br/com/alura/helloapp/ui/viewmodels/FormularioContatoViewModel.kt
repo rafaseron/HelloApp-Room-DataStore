@@ -3,6 +3,7 @@ package br.com.alura.helloapp.ui.viewmodels
 import androidx.annotation.StringRes
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import br.com.alura.helloapp.R
 import br.com.alura.helloapp.extensions.converteParaDate
 import br.com.alura.helloapp.extensions.converteParaString
@@ -13,6 +14,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import java.util.Date
 import javax.inject.Inject
 
@@ -103,4 +105,25 @@ class FormularioContatoViewModel @Inject constructor(private val contatoReposito
 
         ListaContatosViewModel(contatoRepository).updateContactList()
     }
+
+    fun receberIdPeloNavigation(id: Long){
+        _uiState.value = _uiState.value.copy(id = id)
+        getContanctFromId()
+    }
+
+    private fun getContanctFromId(){
+        val receivedId = uiState.value.id
+        viewModelScope.launch {
+            val contatoFiltrado = contatoRepository.searchContactFromId(receivedId)
+            contatoFiltrado?.let {
+                showContactFromReceivedId(contatoFiltrado)
+            }
+        }
+    }
+
+    private fun showContactFromReceivedId(contato: Contato){
+        _uiState.value = _uiState.value.copy(nome = contato.nome, sobrenome = contato.sobrenome,
+            fotoPerfil = contato.fotoPerfil, aniversario = contato.aniversario, telefone = contato.telefone)
+    }
+
 }
