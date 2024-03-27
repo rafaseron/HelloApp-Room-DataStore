@@ -1,5 +1,6 @@
 package br.com.alura.helloapp.navigation
 
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -16,7 +17,9 @@ fun NavGraphBuilder.listContactsScreenNavigation(navController: NavHostControlle
         composable(route = DestinosHelloApp.ListaContatos.rota) {
             val viewModel = hiltViewModel<ListaContatosViewModel>()
             val state by viewModel.uiState.collectAsState()
-            viewModel.updateContactList()
+            LaunchedEffect(Unit) {
+                viewModel.updateContactList()
+            }
 
             ListaContatosTela(
                 state = state,
