@@ -9,6 +9,7 @@ import br.com.alura.helloapp.extensions.converteParaDate
 import br.com.alura.helloapp.extensions.converteParaString
 import br.com.alura.helloapp.room.entities.Contato
 import br.com.alura.helloapp.room.repository.ContatoRepository
+import br.com.alura.helloapp.util.ID_CONTATO
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -42,7 +43,7 @@ data class FormularioContatoUiState(
 @HiltViewModel
 class FormularioContatoViewModel @Inject constructor(private val contatoRepository: ContatoRepository, savedStateHandle: SavedStateHandle) : ViewModel() {
 
-    //private val idContato = savedStateHandle.get<Long>(ID_CONTATO)
+    private val idContato = savedStateHandle.get<Long>(ID_CONTATO)
 
     private val _uiState = MutableStateFlow(FormularioContatoUiState())
     val uiState: StateFlow<FormularioContatoUiState>
@@ -50,6 +51,9 @@ class FormularioContatoViewModel @Inject constructor(private val contatoReposito
 
 
     init {
+        idContato?.let {
+            receberIdPeloNavigation(it)
+        }
 
         _uiState.update { state ->
             state.copy(onNomeMudou = {
@@ -99,6 +103,9 @@ class FormularioContatoViewModel @Inject constructor(private val contatoReposito
     }
 
     suspend fun onSaveClick(){
+
+
+
         val contato = Contato(nome = uiState.value.nome, sobrenome = uiState.value.sobrenome, fotoPerfil = uiState.value.fotoPerfil,
             telefone = uiState.value.telefone, aniversario = uiState.value.aniversario)
         contatoRepository.insertOnDatabase(contato)
@@ -124,6 +131,10 @@ class FormularioContatoViewModel @Inject constructor(private val contatoReposito
     private fun showContactFromReceivedId(contato: Contato){
         _uiState.value = _uiState.value.copy(nome = contato.nome, sobrenome = contato.sobrenome,
             fotoPerfil = contato.fotoPerfil, aniversario = contato.aniversario, telefone = contato.telefone)
+    }
+
+    fun onNameChange(newName: String){
+        _uiState.value = _uiState.value.copy(nome = newName)
     }
 
 }

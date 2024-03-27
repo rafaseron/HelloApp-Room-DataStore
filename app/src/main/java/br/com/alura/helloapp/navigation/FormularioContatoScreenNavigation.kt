@@ -26,7 +26,7 @@ fun NavGraphBuilder.formularioContatoScreenNavigation(navController: NavHostCont
             val state by viewModel.uiState.collectAsState()
             val context = LocalContext.current
 
-            viewModel.receberIdPeloNavigation(idContato)
+            //viewModel.receberIdPeloNavigation(idContato)
 
             LaunchedEffect(state.aniversario) {
                 viewModel.defineTextoAniversario(
