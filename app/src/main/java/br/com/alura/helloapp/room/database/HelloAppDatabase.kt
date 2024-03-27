@@ -37,6 +37,9 @@ abstract class HelloAppDatabase : RoomDatabase() {
 
     companion object {
         private lateinit var INSTANCE: HelloAppDatabase
+        /*lateinit porque se nao teriamos que inicializar seu valor durante sua definicao
+            ou teriamos que falar que a variavel poderia ser nula e inicializar como nula (e null safety pra algo que sabemos que nao eh nulo eh pessimo) */
+
         fun getDatabase(context: Context): HelloAppDatabase {
             // verifica se o banco de dados esta inicializado. Se estiver, retorna. Se não, inicializa e retorna (Singleton)
             if (::INSTANCE.isInitialized) {
