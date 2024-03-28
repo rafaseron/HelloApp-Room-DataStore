@@ -5,6 +5,8 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
 import br.com.alura.helloapp.room.typeConverters.TypeConverter
 import br.com.alura.helloapp.room.dao.ContatoDao
 import br.com.alura.helloapp.room.dao.UsuarioDao
@@ -43,6 +45,12 @@ abstract class HelloAppDatabase : RoomDatabase() {
         /*lateinit porque se nao teriamos que inicializar seu valor durante sua definicao
             ou teriamos que falar que a variavel poderia ser nula e inicializar como nula (e null safety pra algo que sabemos que nao eh nulo eh pessimo) */
 
+        val MIGRATION_1_2 = object : Migration(1,2){
+            override fun migrate(database: SupportSQLiteDatabase) {
+                database.execSQL("CREATE TABLE IF NOT EXISTS 'Usuario' ('nome' TEXT NOT NULL, 'senha' TEXT NOT NULL, 'usuario' TEXT NOT NULL, PRIMARY KEY ('usuario'))")
+            }
+        }
+
         fun getDatabase(context: Context): HelloAppDatabase {
             // verifica se o banco de dados esta inicializado. Se estiver, retorna. Se não, inicializa e retorna (Singleton)
             if (::INSTANCE.isInitialized) {
@@ -52,7 +60,7 @@ abstract class HelloAppDatabase : RoomDatabase() {
                     context,
                     HelloAppDatabase::class.java,
                     "helloApp.db"
-                ).allowMainThreadQueries().build()
+                ).allowMainThreadQueries().addMigrations(MIGRATION_1_2).build()
                 return INSTANCE
             }
         }
