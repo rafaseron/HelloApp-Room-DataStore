@@ -13,7 +13,7 @@ import br.com.alura.helloapp.ui.viewmodels.FormularioLoginViewModel
 import br.com.alura.helloapp.ui.screens.LoginTela
 import br.com.alura.helloapp.ui.viewmodels.LoginViewModel
 
-fun NavGraphBuilder.loginNavigation(navController: NavHostController) {
+fun NavGraphBuilder.loginGraphNavigation(navController: NavHostController) {
     navigation(startDestination = DestinosHelloApp.Login.rota, route = DestinosHelloApp.LoginGraph.rota) {
 
         composable(route = DestinosHelloApp.Login.rota) {

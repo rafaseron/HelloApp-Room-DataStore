@@ -12,7 +12,7 @@ fun NavHostComposable(navController: NavHostController, modifier: Modifier = Mod
         listContactsScreenNavigation(navController)
         formularioContatoScreenNavigation(navController)
         detalhesContatoScreenNavigation(navController)
-        loginNavigation(navController)
+        loginGraphNavigation(navController)
     }
 }
 
