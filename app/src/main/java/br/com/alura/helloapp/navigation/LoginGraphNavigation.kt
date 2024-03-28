@@ -3,15 +3,22 @@ package br.com.alura.helloapp.navigation
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.platform.LocalContext
+import androidx.datastore.preferences.core.booleanPreferencesKey
+import androidx.datastore.preferences.core.edit
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
+import br.com.alura.helloapp.localData.preferences.dataStore
 import br.com.alura.helloapp.ui.screens.FormularioLoginTela
 import br.com.alura.helloapp.ui.viewmodels.FormularioLoginViewModel
 import br.com.alura.helloapp.ui.screens.LoginTela
 import br.com.alura.helloapp.ui.viewmodels.LoginViewModel
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 
 fun NavGraphBuilder.loginGraphNavigation(navController: NavHostController) {
     navigation(startDestination = DestinosHelloApp.Login.rota, route = DestinosHelloApp.LoginGraph.rota) {
@@ -21,9 +28,16 @@ fun NavGraphBuilder.loginGraphNavigation(navController: NavHostController) {
             val viewModel = hiltViewModel<LoginViewModel>()
             val state by viewModel.uiState.collectAsState()
 
-            if (state.logado) {
-                LaunchedEffect(Unit) {
-                    navController.navegaLimpo(DestinosHelloApp.HomeGraph.rota)
+            val scope = rememberCoroutineScope()
+            val dataStore = LocalContext.current.dataStore
+
+            LaunchedEffect(Unit) {
+                scope.launch {
+                    val prefereces = dataStore.data.first()
+                    val chave = prefereces[booleanPreferencesKey("userIsAuthenticated")]
+                    chave?.let {valor ->
+                        if (valor){ navController.navigate(route = DestinosHelloApp.ListaContatos.rota) }
+                    }
                 }
             }
 
@@ -31,7 +45,14 @@ fun NavGraphBuilder.loginGraphNavigation(navController: NavHostController) {
                 state = state,
                 onClickLogar = {
                     viewModel.tentaLogar()
-                    if (state.logado){ navController.navigate(route = DestinosHelloApp.ListaContatos.rota) }
+                    if (state.logado){
+                        navController.navigate(route = DestinosHelloApp.ListaContatos.rota)
+                        scope.launch {
+                            dataStore.edit { preferences ->
+                                preferences[booleanPreferencesKey("userIsAuthenticated")] = true
+                            }
+                        }
+                    }
                 },
                 onClickCriarLogin = {
                     navController.navigate(DestinosHelloApp.FormularioLogin.rota)
