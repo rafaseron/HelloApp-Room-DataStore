@@ -7,9 +7,11 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import br.com.alura.helloapp.room.typeConverters.TypeConverter
 import br.com.alura.helloapp.room.dao.ContatoDao
+import br.com.alura.helloapp.room.dao.UsuarioDao
 import br.com.alura.helloapp.room.entities.Contato
+import br.com.alura.helloapp.room.entities.Usuario
 
-@Database(entities = [Contato::class], version = 1)
+@Database(entities = [Contato::class, Usuario::class], version = 2)
 @TypeConverters(TypeConverter::class)
 abstract class HelloAppDatabase : RoomDatabase() {
     /*como a classe HelloAppDatabase tem uma funcao abstrata dentro dela -> ela precisa se tornar uma classe abstrata.
@@ -18,6 +20,7 @@ abstract class HelloAppDatabase : RoomDatabase() {
 
     //como a funcao Dao nao tem Corpo -> ela é uma funcao abstrata
     abstract fun contatoDao(): ContatoDao
+    abstract fun usuarioDao(): UsuarioDao
     /*a funcao abstrata (funcao sem corpo) contatoDao esta herdando uma Interface, que é a ContatoDao
         isso faz com que ela ganhe todas as funções que estao definidas no 'interface ContatoDao{ }'
         lembrando que uma Interface pode ter metodos ou variaveis, mas nao pode ter variavies com valores já inicializados. Ela serve como um molde sem valores inicializados */
