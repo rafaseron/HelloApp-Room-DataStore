@@ -1,10 +1,15 @@
 package br.com.alura.helloapp.ui.viewmodels
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import br.com.alura.helloapp.room.repository.UsernameRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 
 data class LoginUiState(
@@ -18,11 +23,11 @@ data class LoginUiState(
     val logado: Boolean = false
 )
 
-class LoginViewModel: ViewModel() {
+@HiltViewModel
+class LoginViewModel @Inject constructor(val usernameRepository: UsernameRepository): ViewModel() {
 
     private val _uiState = MutableStateFlow(LoginUiState())
-    val uiState: StateFlow<LoginUiState>
-        get() = _uiState.asStateFlow()
+    val uiState = _uiState.asStateFlow()
 
     init {
         _uiState.update { state ->
@@ -47,7 +52,15 @@ class LoginViewModel: ViewModel() {
     }
 
     fun tentaLogar() {
-        logaUsuario()
+        val username = uiState.value.usuario
+        val senha = uiState.value.senha
+
+        viewModelScope.launch {
+            val response = usernameRepository.verificarUsuario(username = username, password = senha)
+            if (response){
+                logaUsuario()
+            }
+        }
     }
 
     private fun logaUsuario() {

@@ -31,6 +31,7 @@ fun NavGraphBuilder.loginGraphNavigation(navController: NavHostController) {
                 state = state,
                 onClickLogar = {
                     viewModel.tentaLogar()
+                    if (state.logado){ navController.navigate(route = DestinosHelloApp.ListaContatos.rota) }
                 },
                 onClickCriarLogin = {
                     navController.navigate(DestinosHelloApp.FormularioLogin.rota)
