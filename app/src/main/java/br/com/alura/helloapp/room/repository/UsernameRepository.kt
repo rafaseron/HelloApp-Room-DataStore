@@ -19,4 +19,8 @@ class UsernameRepository(context: Context) {
     suspend fun searchUserByUsername(username: String): Usuario?{
         return usernameDatabase.searchUserFromUsername(username)
     }
+
+    suspend fun verificarUsuario(username: String, password: String): Boolean{
+        return usernameDatabase.authenticateUser(username = username, senha = password) != null
+    }
 }

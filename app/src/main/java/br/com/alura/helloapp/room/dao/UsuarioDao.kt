@@ -26,4 +26,7 @@ interface UsuarioDao {
     @Query("SELECT * FROM Usuario WHERE usuario = :username")
     suspend fun searchUserFromUsername(username: String): Usuario?
 
+    @Query("SELECT * FROM Usuario WHERE usuario = :username AND senha = :senha")
+    suspend fun authenticateUser(username: String, senha: String):Usuario?
+
 }
