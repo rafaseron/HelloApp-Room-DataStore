@@ -1,4 +1,4 @@
-package br.com.alura.helloapp.room.typeConverters
+package br.com.alura.helloapp.localData.room.typeConverters
 
 import androidx.room.TypeConverter
 import java.util.Date

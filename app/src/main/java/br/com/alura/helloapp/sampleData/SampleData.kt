@@ -1,6 +1,6 @@
 package br.com.alura.helloapp.sampleData
 
-import br.com.alura.helloapp.room.entities.Contato
+import br.com.alura.helloapp.localData.room.entities.Contato
 import java.util.*
 
 var contatosExemplo: List<Contato> = listOf(

@@ -1,4 +1,4 @@
-package br.com.alura.helloapp.room.entities
+package br.com.alura.helloapp.localData.room.entities
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

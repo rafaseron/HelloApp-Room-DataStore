@@ -1,4 +1,4 @@
-package br.com.alura.helloapp.room.database
+package br.com.alura.helloapp.localData.room.database
 
 import android.content.Context
 import androidx.room.Database
@@ -7,11 +7,11 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
-import br.com.alura.helloapp.room.typeConverters.TypeConverter
-import br.com.alura.helloapp.room.dao.ContatoDao
-import br.com.alura.helloapp.room.dao.UsuarioDao
-import br.com.alura.helloapp.room.entities.Contato
-import br.com.alura.helloapp.room.entities.Usuario
+import br.com.alura.helloapp.localData.room.typeConverters.TypeConverter
+import br.com.alura.helloapp.localData.room.dao.ContatoDao
+import br.com.alura.helloapp.localData.room.dao.UsuarioDao
+import br.com.alura.helloapp.localData.room.entities.Contato
+import br.com.alura.helloapp.localData.room.entities.Usuario
 
 @Database(entities = [Contato::class, Usuario::class], version = 2)
 @TypeConverters(TypeConverter::class)
@@ -53,7 +53,7 @@ abstract class HelloAppDatabase : RoomDatabase() {
 
         fun getDatabase(context: Context): HelloAppDatabase {
             // verifica se o banco de dados esta inicializado. Se estiver, retorna. Se não, inicializa e retorna (Singleton)
-            if (::INSTANCE.isInitialized) {
+            if (Companion::INSTANCE.isInitialized) {
                 return INSTANCE
             } else {
                 INSTANCE = Room.databaseBuilder(

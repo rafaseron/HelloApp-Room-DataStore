@@ -2,7 +2,7 @@ package br.com.alura.helloapp.ui.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import br.com.alura.helloapp.room.repository.UsernameRepository
+import br.com.alura.helloapp.localData.room.repository.UsernameRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

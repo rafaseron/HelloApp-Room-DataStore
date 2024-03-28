@@ -7,8 +7,8 @@ import androidx.lifecycle.viewModelScope
 import br.com.alura.helloapp.R
 import br.com.alura.helloapp.extensions.converteParaDate
 import br.com.alura.helloapp.extensions.converteParaString
-import br.com.alura.helloapp.room.entities.Contato
-import br.com.alura.helloapp.room.repository.ContatoRepository
+import br.com.alura.helloapp.localData.room.entities.Contato
+import br.com.alura.helloapp.localData.room.repository.ContatoRepository
 import br.com.alura.helloapp.util.ID_CONTATO
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

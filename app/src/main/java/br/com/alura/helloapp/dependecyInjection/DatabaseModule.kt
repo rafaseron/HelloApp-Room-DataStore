@@ -1,8 +1,8 @@
 package br.com.alura.helloapp.dependecyInjection
 
 import android.content.Context
-import br.com.alura.helloapp.room.repository.ContatoRepository
-import br.com.alura.helloapp.room.repository.UsernameRepository
+import br.com.alura.helloapp.localData.room.repository.ContatoRepository
+import br.com.alura.helloapp.localData.room.repository.UsernameRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,12 +13,12 @@ import dagger.hilt.components.SingletonComponent
 @InstallIn(SingletonComponent::class)
 class DatabaseModule{
     @Provides
-    fun provideContatoRepository(@ApplicationContext context: Context): ContatoRepository{
+    fun provideContatoRepository(@ApplicationContext context: Context): ContatoRepository {
         return ContatoRepository(context = context)
     }
 
     @Provides
-    fun provideUsernameRepository(@ApplicationContext context: Context): UsernameRepository{
+    fun provideUsernameRepository(@ApplicationContext context: Context): UsernameRepository {
         return UsernameRepository(context = context)
     }
 

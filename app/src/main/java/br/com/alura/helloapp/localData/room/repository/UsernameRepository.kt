@@ -1,8 +1,8 @@
-package br.com.alura.helloapp.room.repository
+package br.com.alura.helloapp.localData.room.repository
 
 import android.content.Context
-import br.com.alura.helloapp.room.database.HelloAppDatabase
-import br.com.alura.helloapp.room.entities.Usuario
+import br.com.alura.helloapp.localData.room.database.HelloAppDatabase
+import br.com.alura.helloapp.localData.room.entities.Usuario
 
 class UsernameRepository(context: Context) {
 
