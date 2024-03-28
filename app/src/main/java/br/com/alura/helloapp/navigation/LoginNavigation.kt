@@ -45,6 +45,7 @@ fun NavGraphBuilder.loginNavigation(navController: NavHostController) {
 
             FormularioLoginTela(state = state,
                 onSalvar = {
+                    viewModel.criarUsuario()
                     navController.navegaLimpo(DestinosHelloApp.Login.rota)
                 }
             )
