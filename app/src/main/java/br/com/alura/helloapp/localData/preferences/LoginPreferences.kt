@@ -6,3 +6,10 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
 
 val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "loginPreferences")
+
+class TypeSafetyPreferences{
+    object key{
+        val userIsAuthenticated = "userIsAuthenticated"
+    }
+
+}

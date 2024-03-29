@@ -12,6 +12,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
+import br.com.alura.helloapp.localData.preferences.TypeSafetyPreferences.key.userIsAuthenticated
 import br.com.alura.helloapp.localData.preferences.dataStore
 import br.com.alura.helloapp.ui.screens.ListaContatosTela
 import br.com.alura.helloapp.ui.viewmodels.ListaContatosViewModel
@@ -33,7 +34,7 @@ fun NavGraphBuilder.listContactsScreenNavigation(navController: NavHostControlle
                 //verificacao de persistencia de login
                 scope.launch {
                     val prefereces = dataStore.data.first()
-                    val chave = prefereces[booleanPreferencesKey("userIsAuthenticated")]
+                    val chave = prefereces[booleanPreferencesKey(userIsAuthenticated)]
                     chave?.let {valor ->
                         if (!valor){ navController.navigate(route = DestinosHelloApp.LoginGraph.rota) }
                     }
@@ -52,10 +53,10 @@ fun NavGraphBuilder.listContactsScreenNavigation(navController: NavHostControlle
                 onClickDesloga = {
                     scope.launch {
                         val preferences = dataStore.data.first()
-                        val chave =  preferences[booleanPreferencesKey("userIsAuthenticated")]
+                        val chave =  preferences[booleanPreferencesKey(userIsAuthenticated)]
                         chave?.let { valor ->
                             if (valor) { dataStore.edit { preferences ->
-                                preferences[booleanPreferencesKey("userIsAuthenticated")] = false
+                                preferences[booleanPreferencesKey(userIsAuthenticated)] = false
                                 navController.navigate(route = DestinosHelloApp.LoginGraph.rota)
                             } }
                         }

@@ -12,6 +12,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
+import br.com.alura.helloapp.localData.preferences.TypeSafetyPreferences.key.userIsAuthenticated
 import br.com.alura.helloapp.localData.preferences.dataStore
 import br.com.alura.helloapp.ui.screens.FormularioLoginTela
 import br.com.alura.helloapp.ui.viewmodels.FormularioLoginViewModel
@@ -39,7 +40,7 @@ fun NavGraphBuilder.loginGraphNavigation(navController: NavHostController) {
                         navController.navigate(route = DestinosHelloApp.ListaContatos.rota)
                         scope.launch {
                             dataStore.edit { preferences ->
-                                preferences[booleanPreferencesKey("userIsAuthenticated")] = true
+                                preferences[booleanPreferencesKey(userIsAuthenticated)] = true
                             }
                         }
                     }
