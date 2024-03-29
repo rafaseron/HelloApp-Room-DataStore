@@ -31,16 +31,6 @@ fun NavGraphBuilder.loginGraphNavigation(navController: NavHostController) {
             val scope = rememberCoroutineScope()
             val dataStore = LocalContext.current.dataStore
 
-            LaunchedEffect(Unit) {
-                scope.launch {
-                    val prefereces = dataStore.data.first()
-                    val chave = prefereces[booleanPreferencesKey("userIsAuthenticated")]
-                    chave?.let {valor ->
-                        if (valor){ navController.navigate(route = DestinosHelloApp.ListaContatos.rota) }
-                    }
-                }
-            }
-
             LoginTela(
                 state = state,
                 onClickLogar = {

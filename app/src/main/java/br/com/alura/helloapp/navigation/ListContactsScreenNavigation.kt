@@ -27,7 +27,18 @@ fun NavGraphBuilder.listContactsScreenNavigation(navController: NavHostControlle
             val scope = rememberCoroutineScope()
             val dataStore = LocalContext.current.dataStore
             LaunchedEffect(Unit) {
+                //atualizar a lista recebida do banco de dados a cada navegacao nessa tela
                 viewModel.updateContactList()
+
+                //verificacao de persistencia de login
+                scope.launch {
+                    val prefereces = dataStore.data.first()
+                    val chave = prefereces[booleanPreferencesKey("userIsAuthenticated")]
+                    chave?.let {valor ->
+                        if (!valor){ navController.navigate(route = DestinosHelloApp.LoginGraph.rota) }
+                    }
+                }
+
             }
 
             ListaContatosTela(
