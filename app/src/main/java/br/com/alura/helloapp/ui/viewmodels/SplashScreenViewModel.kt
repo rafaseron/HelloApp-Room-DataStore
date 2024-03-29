@@ -17,8 +17,7 @@ sealed class AppState {
 class SplashScreenViewModel: ViewModel() {
 
     private val _uiState = MutableStateFlow(SplashScreenUiState())
-    val uiState: StateFlow<SplashScreenUiState>
-        get() = _uiState.asStateFlow()
+    val uiState = _uiState.asStateFlow()
 
     init {
         viewModelScope.launch {
@@ -27,5 +26,9 @@ class SplashScreenViewModel: ViewModel() {
     }
 
     private fun definiDestinoInicial() {
+    }
+
+    fun atualizarAppState(appState: AppState){
+        _uiState.value = _uiState.value.copy(appState = appState)
     }
 }
