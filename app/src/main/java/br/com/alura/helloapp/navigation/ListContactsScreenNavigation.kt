@@ -12,7 +12,7 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import br.com.alura.helloapp.localData.preferences.TypeSafetyPreferences.key.userIsAuthenticated
+import br.com.alura.helloapp.localData.preferences.TypeSafetyPreferences.Key.userIsAuthenticated
 import br.com.alura.helloapp.localData.preferences.dataStore
 import br.com.alura.helloapp.ui.screens.ListaContatosTela
 import br.com.alura.helloapp.ui.viewmodels.ListaContatosViewModel
