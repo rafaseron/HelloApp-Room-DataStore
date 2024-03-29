@@ -1,6 +1,5 @@
 package br.com.alura.helloapp.navigation
 
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
@@ -12,13 +11,12 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
-import br.com.alura.helloapp.localData.preferences.TypeSafetyPreferences.Key.userIsAuthenticated
+import br.com.alura.helloapp.localData.preferences.TypeSafetyPreferences.Key.AUTHENTICATED
 import br.com.alura.helloapp.localData.preferences.dataStore
 import br.com.alura.helloapp.ui.screens.FormularioLoginTela
 import br.com.alura.helloapp.ui.viewmodels.FormularioLoginViewModel
 import br.com.alura.helloapp.ui.screens.LoginTela
 import br.com.alura.helloapp.ui.viewmodels.LoginViewModel
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 fun NavGraphBuilder.loginGraphNavigation(navController: NavHostController) {
@@ -40,7 +38,7 @@ fun NavGraphBuilder.loginGraphNavigation(navController: NavHostController) {
                         navController.navigate(route = DestinosHelloApp.ListaContatos.rota)
                         scope.launch {
                             dataStore.edit { preferences ->
-                                preferences[booleanPreferencesKey(userIsAuthenticated)] = true
+                                preferences[booleanPreferencesKey(AUTHENTICATED)] = true
                             }
                         }
                     }

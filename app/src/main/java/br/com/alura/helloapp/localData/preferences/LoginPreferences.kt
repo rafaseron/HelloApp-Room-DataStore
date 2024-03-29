@@ -9,7 +9,7 @@ val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "lo
 
 class TypeSafetyPreferences{
     object Key{
-        val userIsAuthenticated = "userIsAuthenticated"
+        const val AUTHENTICATED = "userIsAuthenticated"
     }
 
 }
