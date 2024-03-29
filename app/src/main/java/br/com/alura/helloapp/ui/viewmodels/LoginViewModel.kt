@@ -59,7 +59,7 @@ class LoginViewModel @Inject constructor(val usernameRepository: UsernameReposit
             val response = usernameRepository.verificarUsuario(username = username, password = senha)
             if (response){
                 logaUsuario()
-            }
+            } else{ _uiState.value = _uiState.value.copy(exibirErro = true) }
         }
     }
 
