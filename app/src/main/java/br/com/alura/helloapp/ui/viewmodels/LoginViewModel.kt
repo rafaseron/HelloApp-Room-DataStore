@@ -2,6 +2,7 @@ package br.com.alura.helloapp.ui.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import br.com.alura.helloapp.localData.hashConverter.HashConverter
 import br.com.alura.helloapp.localData.room.repository.UsernameRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -56,7 +57,7 @@ class LoginViewModel @Inject constructor(val usernameRepository: UsernameReposit
         val senha = uiState.value.senha
 
         viewModelScope.launch {
-            val response = usernameRepository.verificarUsuario(username = username, password = senha)
+            val response = usernameRepository.verificarUsuario(username = username, password = HashConverter.convertStringToSHA256(senha))
             if (response){
                 logaUsuario()
             } else{ _uiState.value = _uiState.value.copy(exibirErro = true) }
