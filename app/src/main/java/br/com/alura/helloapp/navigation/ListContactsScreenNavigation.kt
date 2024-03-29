@@ -41,6 +41,9 @@ fun NavGraphBuilder.listContactsScreenNavigation(navController: NavHostControlle
                     navController.navegaParaFormularioContato()
                 },
                 onClickDesloga = {
+                    //TODO mover esse codigo de onClickLogout pro ViewModel -> criando uma nova funcao
+                    //TODO executar essa nova funcao aqui dentro com viewModel.executarfuncao()
+                    //TODO -> injetar dependencias no ViewModel com Hilt
                     scope.launch {
                         val preferences = dataStore.data.first()
                         val chave =  preferences[booleanPreferencesKey(AUTHENTICATED)]

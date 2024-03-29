@@ -33,6 +33,9 @@ fun NavGraphBuilder.loginGraphNavigation(navController: NavHostController) {
             LoginTela(
                 state = state,
                 onClickLogar = {
+                    //TODO mover esse codigo de onClickLogin pro ViewModel -> criando uma nova funcao
+                    //TODO executar essa nova funcao aqui dentro com viewModel.executarfuncao()
+                    //TODO -> injetar dependencias no ViewModel com Hilt
                     viewModel.tentaLogar()
                     if (state.logado){
                         navController.navigate(route = DestinosHelloApp.ListaContatos.rota)

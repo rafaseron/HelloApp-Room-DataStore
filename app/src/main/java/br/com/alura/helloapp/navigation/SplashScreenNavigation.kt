@@ -28,6 +28,11 @@ fun NavGraphBuilder.splashScreenNavigation(navController: NavHostController) {
 
         val viewModel = hiltViewModel<SplashScreenViewModel>()
         val state by viewModel.uiState.collectAsState()
+
+        //TODO mover esse codigo de verificacao de AppState pro ViewModel -> criando uma nova funcao
+        //TODO executar essa nova funcao aqui dentro com viewModel.executarfuncao()
+        //TODO -> injetar dependencias no ViewModel com Hilt
+
         val scope = rememberCoroutineScope()
         val dataStore = LocalContext.current.dataStore
         val preferencesFlow = dataStore.data
