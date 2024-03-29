@@ -7,11 +7,11 @@ import br.com.alura.helloapp.localData.room.entities.Usuario
 import br.com.alura.helloapp.localData.room.repository.UsernameRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import javax.inject.Inject
+import br.com.alura.helloapp.localData.hashConverter.HashConverter
 
 data class FormularioLoginUiState(
     val nome: String = "",
@@ -52,10 +52,12 @@ class FormularioLoginViewModel @Inject constructor(val usernameRepository: Usern
     }
 
     fun criarUsuario(){
-        val usuario = Usuario(nome = uiState.value.nome, usuario = uiState.value.usuario, senha = uiState.value.senha)
+        val usuario = Usuario(nome = uiState.value.nome, usuario = uiState.value.usuario, senha = HashConverter.convertStringToSHA256(uiState.value.senha))
         if (uiState.value.usuario !== "" && uiState.value.senha !== "" && uiState.value.nome !== ""){
             viewModelScope.launch{
                 usernameRepository.createNewUser(usuario)
+
+                Log.e("UserCreated", "usuario -> ${usuario.usuario} senha -> ${usuario.senha}")
 
                 //para verificar no console se deu certo
                 val pesquisa = usernameRepository.searchUserByUsername(uiState.value.usuario)
